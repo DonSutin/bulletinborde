@@ -61,7 +61,7 @@ if(!empty($_POST['name']) && !empty ($_POST['comment']) && !empty($_POST['edi'])
 	if ($_POST['pass1'] == "かわ"){
 
 	//入力したデータをupdateによって編集する。
-	//bindParamの引数（:nameなど）は4-2でどんな名前のカラムを設定したかで変える必要がある。
+	//bindParamの引数（:nameなど）はどんな名前のカラムを設定したかで変える必要がある。
 	$id = $_POST['edi']; //変更する投稿番号
 	$name = $_POST['name'];
 	$comment = $_POST['comment'];
@@ -160,7 +160,7 @@ if(!empty($_POST['editNo'])){
 
 <?php
 	//入力したデータをselectによって表示する
-	//$rowの添字（[ ]内）は4-2でどんな名前のカラムを設定したかで変える必要がある。
+	//$rowの添字（[ ]内）はどんな名前のカラムを設定したかで変える必要がある。
 	$sql = 'SELECT * FROM bulletin';
 	$stmt = $pdo->query($sql);
 	$results = $stmt->fetchAll();
