@@ -4,9 +4,9 @@
 //インスタンスプロパティ、インスタンスメソッド	->
 
 //まずはデータベースへの接続を行う。
-	$dsn = 'databasename';//dsn=data sorce name
-	$user = 'username';
-	$password = 'password';
+	$dsn = 'd';//dsn=data sorce name
+	$user = 'u';
+	$password = 'p';
 	$pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));//インスタンス化
 	//PDO=PHP Data Objects:データベース抽象化レイヤの一つ、pdoクラスというものが存在し、定数が入ってる。どのデータベースにも使える
 
@@ -61,7 +61,7 @@ if(!empty($_POST['name']) && !empty ($_POST['comment']) && !empty($_POST['edi'])
 	if ($_POST['pass1'] == "かわ"){
 
 	//入力したデータをupdateによって編集する。
-	//bindParamの引数（:nameなど）は4-2でどんな名前のカラムを設定したかで変える必要がある。
+	//bindParamの引数（:nameなど）はどんな名前のカラムを設定したかで変える必要がある。
 	$id = $_POST['edi']; //変更する投稿番号
 	$name = $_POST['name'];
 	$comment = $_POST['comment'];
@@ -76,6 +76,8 @@ if(!empty($_POST['name']) && !empty ($_POST['comment']) && !empty($_POST['edi'])
 
 	}
 }
+
+
 
 
 
@@ -96,6 +98,8 @@ if (!empty ($_POST['deleteNo'])){
 
 	}
 }
+
+
 
 
 
@@ -160,7 +164,7 @@ if(!empty($_POST['editNo'])){
 
 <?php
 	//入力したデータをselectによって表示する
-	//$rowの添字（[ ]内）は4-2でどんな名前のカラムを設定したかで変える必要がある。
+	//$rowの添字（[ ]内）はどんな名前のカラムを設定したかで変える必要がある。
 	$sql = 'SELECT * FROM bulletin';
 	$stmt = $pdo->query($sql);
 	$results = $stmt->fetchAll();
