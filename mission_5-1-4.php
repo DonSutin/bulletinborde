@@ -4,24 +4,21 @@
 //インスタンスプロパティ、インスタンスメソッド	->
 
 //まずはデータベースへの接続を行う。
-	$dsn = 'database';//dsn=data sorce name
-	$user = 'user';
-	$password = 'password';
+	$dsn = 'd';//dsn=data sorce name
+	$user = 'u';
+	$password = 'p';
 	$pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));//インスタンス化
 	//データベース抽象化レイヤの一つ、pdoクラスというものが存在し、定数が入ってる
 
 
 
 
-?>
-
-<?php
 //！は「否定」　emptyは変数が存在しない場合にtrueを返す
  if (!empty ($_POST['name'])) {
 	echo $_POST['name'] . "さんですね<br>";
  }
-?>
-<?php
+
+
  if (!empty ($_POST['comment'])) {
 	if($_POST['comment'] == "完成！") {
 		echo "おめでとう！";
@@ -29,9 +26,15 @@
 		echo $_POST['comment'] . "を受け付けました。<br>";
 	}
  }
-?>
 
-<?php //新規投稿時入力フォーム
+
+
+
+
+
+
+
+ //新規投稿時入力フォーム
 if (!empty($_POST['name']) && !empty ($_POST['comment']) && empty($_POST['edi'])) {
 
 	if ($_POST['pass1'] == "かわ"){
@@ -48,14 +51,20 @@ if (!empty($_POST['name']) && !empty ($_POST['comment']) && empty($_POST['edi'])
 
 	}
 }
-?>
-<?php //編集時入力フォーム
+
+
+
+
+
+
+
+ //編集時入力フォーム
 if(!empty($_POST['name']) && !empty ($_POST['comment']) && !empty($_POST['edi'])){//編集番号コメントフォームに入っているとき
 
 	if ($_POST['pass1'] == "かわ"){
 
 		//入力したデータをupdateによって編集する。
-		//bindParamの引数（:nameなど）は4-2でどんな名前のカラムを設定したかで変える必要がある。
+		//bindParamの引数（:nameなど）はどんな名前のカラムを設定したかで変える必要がある。
 	$id = $_POST['edi']; //変更する投稿番号
 	$name = $_POST['name'];
 	$comment = $_POST['comment']; //変更したい名前、変更したいコメントは自分で決めること
@@ -69,8 +78,14 @@ if(!empty($_POST['name']) && !empty ($_POST['comment']) && !empty($_POST['edi'])
 
 	}
 }
-?>
-<?php //削除フォーム
+
+
+
+
+
+
+
+ //削除フォーム
 
 	//入力したデータをdeleteによって削除する。
 if (!empty ($_POST['deleteNo'])){
@@ -85,8 +100,14 @@ if (!empty ($_POST['deleteNo'])){
 
 	}
 }
-?>
-<?php //編集フォーム
+
+
+
+
+
+
+
+ //編集フォーム
 if(!empty($_POST['editNo'])){
 
 //	if ($_POST['pass3'] == "かわ"){
@@ -118,7 +139,7 @@ if(!empty($_POST['editNo'])){
 
 <body>
 <h2>入力フォーム</h2>
-<form method="POST" action="mission_5-1-3.php">
+<form method="POST" action="mission_5-1-5.php">
 	お名前　　：<input type="text" name="name" value="<?php if(!empty($editname)){ echo $editname; }?>"><br>
 	コメント　：<input type="text" name="comment" value="<?php if(!empty($editcomment)){ echo $editcomment; }?>"><br>
 	<input type="hidden" name="edi" value="<?php if(!empty($_POST['editNo'])){ echo $_POST['editNo']; }?>">
@@ -127,14 +148,14 @@ if(!empty($_POST['editNo'])){
 </form><br>
  
 <h2>削除番号指定用フォーム</h2>
-<form method="POST" action="mission_5-1-3.php">
+<form method="POST" action="mission_5-1-5.php">
 	削除対象番号：<input type="text" name="deleteNo"><br>
 	パスワード　：<input type="text" name="pass2" ><br>
 <input type="submit" name="delete" value="削除">
 </form><br>
 
 <h2>編集フォーム</h2>
-<form method="POST" action="mission_5-1-3.php">
+<form method="POST" action="mission_5-1-5.php">
 	編集対象番号：<input type="text" name="editNo"><br>
 	パスワード　：<input type="text" name="pass3" ><br>
 	<input type="submit" name="edit" value="編集">
@@ -144,7 +165,7 @@ if(!empty($_POST['editNo'])){
 
 <?php
 	//入力したデータをselectによって表示する
-	//$rowの添字（[ ]内）は4-2でどんな名前のカラムを設定したかで変える必要がある。
+	//$rowの添字（[ ]内）はどんな名前のカラムを設定したかで変える必要がある。
 	$sql = 'SELECT * FROM bulletin';
 	$stmt = $pdo->query($sql);
 	$results = $stmt->fetchAll();
